@@ -1,0 +1,11 @@
+{
+  "name": "barberturn-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run start --prefix frontend",
+    "start": "npm run start --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "install:frontend": "cd frontend && npm install"
+  }
+}
