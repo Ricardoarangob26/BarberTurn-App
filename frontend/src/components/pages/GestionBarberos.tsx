@@ -15,7 +15,8 @@ import {
   Eye,
   Filter,
   Mail,
-  Phone
+  Phone,
+  Settings
 } from 'lucide-react';
 
 interface Barbero {
@@ -228,10 +229,16 @@ const GestionBarberos: React.FC = () => {
           Volver
         </button>
         <h1 style={styles.headerTitle}>Gestion de Barberos</h1>
-        <button onClick={() => setShowAddModal(true)} style={styles.addButton}>
-          <UserPlus size={20} />
-          Agregar Barbero
-        </button>
+        <div style={styles.headerActions}>
+          <button onClick={() => navigate('/configurar-barberia')} style={styles.configButton}>
+            <Settings size={20} />
+            Configurar Barberia
+          </button>
+          <button onClick={() => setShowAddModal(true)} style={styles.addButton}>
+            <UserPlus size={20} />
+            Agregar Barbero
+          </button>
+        </div>
       </header>
 
       {/* Tabs */}
@@ -626,6 +633,24 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: '1.5rem',
     fontWeight: 'bold',
     margin: 0,
+  },
+  headerActions: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+  },
+  configButton: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    padding: '0.6rem 1rem',
+    backgroundColor: 'transparent',
+    border: '1px solid #4b5563',
+    borderRadius: '8px',
+    color: 'white',
+    cursor: 'pointer',
+    fontSize: '0.9rem',
+    transition: 'all 0.2s',
   },
   addButton: {
     display: 'flex',

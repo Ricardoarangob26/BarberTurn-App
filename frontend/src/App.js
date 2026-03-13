@@ -24,6 +24,7 @@ import Triangular from './components/pages/triangular.tsx';
 import MisTurnos from './components/pages/MisTurnos.tsx';
 import ParaBarberias from './components/pages/ParaBarberias.tsx';
 import GestionBarberos from './components/pages/GestionBarberos.tsx';
+import ConfigurarBarberia from './components/pages/ConfigurarBarberia.tsx';
 
 import './App.css';
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/para-barberias" element={<ParaBarberias />} />
             <Route path="/gestion-barberos" element={<GestionBarberos />} />
+            <Route path="/configurar-barberia" element={<ConfigurarBarberia />} />
             <Route path="/Premium" element={<Premium />} />
             <Route path="/iniciar-sesion" element={<Login />} />
             <Route path="/galeria" element={<Galeria />} />
