@@ -22,6 +22,7 @@ import Ovalada from './components/pages/ovalada.tsx';
 import Redonda from './components/pages/circular.tsx';
 import Triangular from './components/pages/triangular.tsx';
 import MisTurnos from './components/pages/MisTurnos.tsx';
+import ParaBarberias from './components/pages/ParaBarberias.tsx';
 
 import './App.css';
 
@@ -32,6 +33,7 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/para-barberias" element={<ParaBarberias />} />
             <Route path="/Premium" element={<Premium />} />
             <Route path="/iniciar-sesion" element={<Login />} />
             <Route path="/galeria" element={<Galeria />} />
