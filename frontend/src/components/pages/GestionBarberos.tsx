@@ -16,7 +16,8 @@ import {
   Filter,
   Mail,
   Phone,
-  Settings
+  Settings,
+  BarChart3
 } from 'lucide-react';
 
 interface Barbero {
@@ -230,6 +231,10 @@ const GestionBarberos: React.FC = () => {
         </button>
         <h1 style={styles.headerTitle}>Gestion de Barberos</h1>
         <div style={styles.headerActions}>
+          <button onClick={() => navigate('/estadisticas-barberia')} style={styles.statsButton}>
+            <BarChart3 size={20} />
+            Estadisticas
+          </button>
           <button onClick={() => navigate('/configurar-barberia')} style={styles.configButton}>
             <Settings size={20} />
             Configurar Barberia
@@ -650,6 +655,20 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: 'white',
     cursor: 'pointer',
     fontSize: '0.9rem',
+    transition: 'all 0.2s',
+  },
+  statsButton: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    padding: '0.6rem 1rem',
+    backgroundColor: '#22c55e',
+    border: 'none',
+    borderRadius: '8px',
+    color: 'white',
+    cursor: 'pointer',
+    fontSize: '0.9rem',
+    fontWeight: 'bold',
     transition: 'all 0.2s',
   },
   addButton: {
