@@ -23,6 +23,7 @@ import Redonda from './components/pages/circular.tsx';
 import Triangular from './components/pages/triangular.tsx';
 import MisTurnos from './components/pages/MisTurnos.tsx';
 import ParaBarberias from './components/pages/ParaBarberias.tsx';
+import GestionBarberos from './components/pages/GestionBarberos.tsx';
 
 import './App.css';
 
@@ -34,6 +35,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/para-barberias" element={<ParaBarberias />} />
+            <Route path="/gestion-barberos" element={<GestionBarberos />} />
             <Route path="/Premium" element={<Premium />} />
             <Route path="/iniciar-sesion" element={<Login />} />
             <Route path="/galeria" element={<Galeria />} />

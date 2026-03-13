@@ -115,6 +115,9 @@ const ParaBarberias: React.FC = () => {
         <div style={styles.headerContent}>
           <h1 style={styles.logo}>BarberTurn <span style={styles.forBusiness}>for Business</span></h1>
         </div>
+        <button onClick={() => navigate('/gestion-barberos')} style={styles.demoButton}>
+          Ver Demo
+        </button>
         <button onClick={() => navigate('/Registro')} style={styles.registerButton}>
           Registrar mi Barberia
         </button>
@@ -321,6 +324,16 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: 'white',
     border: '1px solid rgba(255, 255, 255, 0.2)',
     borderRadius: '8px',
+    cursor: 'pointer',
+    fontSize: '0.9rem',
+  },
+  demoButton: {
+    padding: '0.6rem 1.2rem',
+    backgroundColor: 'transparent',
+    color: '#f59e0b',
+    border: '1px solid #f59e0b',
+    borderRadius: '8px',
+    fontWeight: 'bold',
     cursor: 'pointer',
     fontSize: '0.9rem',
   },
