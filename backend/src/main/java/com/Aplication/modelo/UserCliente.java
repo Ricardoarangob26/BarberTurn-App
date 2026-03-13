@@ -16,6 +16,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
+import java.util.List;
 
 
 @Entity
@@ -40,5 +43,6 @@ public class UserCliente {
     private String expiryDate;
     private String cvv;
     
-    
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<SuscripcionCliente> suscripciones;
 }

@@ -16,10 +16,10 @@ const Index: React.FC = () => {
           <Link to="/premium" style={{...styles.button,}}>
             PREMIUM
           </Link>
-          <Link to="/galeria" style={styles.button}>
+          <Link to="/Galeria-Seleccionable" style={styles.button}>
             GALERIA
           </Link>
-          <Link to="/turnos" style={styles.button}>
+          <Link to="/Reserva-Turno" style={styles.button}>
             TURNOS
           </Link>
           <Link to="/iniciar-sesion" style={styles.button}>

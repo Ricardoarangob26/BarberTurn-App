@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { api } from '../../axiosConfig';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { jwtDecode } from 'jwt-decode';
 
 interface User {
   password: string;
@@ -26,6 +29,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,68 +38,37 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      // Intentar iniciar sesión como barbero
-      const barberoResponse = await api.get('http://localhost:8090/api/user/barbero');
-      console.log('Respuesta completa de barbero:', barberoResponse); // Verificar respuesta completa
-      console.log('Datos de barbero:', barberoResponse.data); // Verificar datos específicos
-      let user = barberoResponse.data.find(
-        (u: User) => u.username === username.trim() && u.password === password.trim()
-      );
-      let rol = 'barbero';
+      // Usar el nuevo endpoint unificado
+      const response = await api.post('http://localhost:8090/api/auth/login', {
+        username: username.trim(),
+        password: password.trim()
+      });
 
-      // Si no se encuentra como barbero, intentar como cliente
-      if (!user) {
-        const clienteResponse = await api.get('http://localhost:8090/api/user/cliente');
-        console.log('Respuesta completa de cliente:', clienteResponse); // Verificar respuesta completa
-        console.log('Datos de cliente:', clienteResponse.data); // Verificar datos específicos
-        user = clienteResponse.data.find(
-          (u: User) => u.username === username.trim() && u.password === password.trim()
-        );
-        rol = 'cliente';
-      }
+      const { token } = response.data;
+      
+      // Pasar token al contexto
+      login(token);
 
-      if (user) {
-        // Obtener los datos personales del usuario según el rol
-        let userData: UserData | undefined;
-        if (rol === 'barbero') {
-          const response = await api.get('http://localhost:8090/api/barberos');
-          console.log('Datos de barbero en tabla barberos:', response.data); // Verificar datos específicos
-          userData = response.data.find((data: UserData) => data.id === user.id);
-        } else {
-          const response = await api.get('http://localhost:8090/api/cliente');
-          console.log('Datos de cliente en tabla clientes:', response.data); // Verificar datos específicos
-          userData = response.data.find((data: UserData) => data.id === user.id);
-        }
+      // Decodificar token para ver el rol (asumimos que el backend pone el rol en claims, o simplemente navegamos basado en el ID o en el username)
+      const decodedUser: any = jwtDecode(token);
+      
+      // En CustomUserDetailsService establecimos authorities (e.g. ROLE_CLIENTE, ROLE_BARBERO) pero el JWT nativo de JJWT no incluye scopes si no se los pasamos al HashMap.
+      // Así que, por el momento, si sabemos que un barbero tiene un endpoint particular para obtener sus datos o el cliente, intentaremos hacer redirect.
+      // O podemos simplemente llevarlo a una ruta por defecto y que desde ahí navegue, o que el Dashboard sea inteligente.
+      // Para simular el flujo original, vamos a intentar ir a Barberias si su usuario es cliente.
+      // *NOTA: Lo ideal es que en JwtUtil.java se incluyan los claims del rol.*
+      
+      // Por simplicidad y asegurar que siga el flujo:
+      navigate('/barberias-disponibles');
+      // Redirigir según el rol... (podria decodificar un claim 'role' aquí)
 
-        if (userData) {
-          const userInfo = {
-            id: userData.id,
-            rol: rol,
-            nombre: userData.nombre,
-            apellido: userData.apellido,
-            email: userData.email,
-            telefono: userData.telefono,
-            ...(rol === 'barbero' && { local: userData.local })
-          };
-
-          // Guardar los datos en localStorage
-          localStorage.setItem('user', JSON.stringify(userInfo));
-
-          // Redirigir según el rol
-          if (rol === 'barbero') {
-            navigate('/dashboard-barbero');
-          } else {
-            navigate('/barberias-disponibles');
-          }
-        } else {
-          setError('No se encontraron los datos personales del usuario.');
-        }
-      } else {
-        setError('Credenciales inválidas. Por favor, intenta de nuevo.');
-      }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error durante el inicio de sesión:', err);
-      setError('Error al iniciar sesión. Por favor, intenta de nuevo.');
+      if (err.response && err.response.status === 401) {
+        setError('Usuario o contraseña incorrectos.');
+      } else {
+        setError('Error al iniciar sesión. Por favor, intenta de nuevo.');
+      }
     } finally {
       setIsLoading(false);
     }

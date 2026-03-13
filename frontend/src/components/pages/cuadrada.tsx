@@ -38,7 +38,7 @@ const GaleriaCortesPelo: React.FC = () => {
 
   const seleccionarCorte = (nombre: string) => {
     localStorage.setItem('corte', nombre);
-    navigate('/reserva-turno'); // Reemplaza 'barbero123' con el ID real del barbero
+    navigate('/Reserva-Turno'); // Reemplaza 'barbero123' con el ID real del barbero
   };
 
   const voltearTarjeta = (id: number) => {
