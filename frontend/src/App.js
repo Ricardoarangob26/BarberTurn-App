@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
-import Premium from './components/pages/Premium';
+import Premium from './components/pages/Premium.tsx';
 import Login from './components/pages/Login.tsx';
-import Galeria from './components/pages/Galeria';
+import Galeria from './components/pages/Galeria.tsx';
 import RecuperarContraseña from './components/pages/RecuperarContraseña.jsx'
-import Membresias from './components/pages/Membresias';
+import Membresias from './components/pages/Membresias.jsx';
 import Index from './components/pages/index.tsx';
 import Registro from './components/pages/Registro.tsx';
 import BarberiasDisponibles from './components/pages/BarberiasDisponibles.tsx';
@@ -22,6 +22,10 @@ import Ovalada from './components/pages/ovalada.tsx';
 import Redonda from './components/pages/circular.tsx';
 import Triangular from './components/pages/triangular.tsx';
 import MisTurnos from './components/pages/MisTurnos.tsx';
+import ParaBarberias from './components/pages/ParaBarberias.tsx';
+import GestionBarberos from './components/pages/GestionBarberos.tsx';
+import ConfigurarBarberia from './components/pages/ConfigurarBarberia.tsx';
+import EstadisticasBarberia from './components/pages/EstadisticasBarberia.tsx';
 
 import './App.css';
 
@@ -32,6 +36,10 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/para-barberias" element={<ParaBarberias />} />
+            <Route path="/gestion-barberos" element={<GestionBarberos />} />
+            <Route path="/configurar-barberia" element={<ConfigurarBarberia />} />
+            <Route path="/estadisticas-barberia" element={<EstadisticasBarberia />} />
             <Route path="/Premium" element={<Premium />} />
             <Route path="/iniciar-sesion" element={<Login />} />
             <Route path="/galeria" element={<Galeria />} />

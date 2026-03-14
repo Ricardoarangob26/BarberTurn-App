@@ -1,0 +1,16 @@
+{
+  "name": "barberturn-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run start --prefix frontend",
+    "start": "npm run start --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "postinstall": "cd frontend && npm install"
+  },
+  "dependencies": {
+    "lucide-react": "^0.577.0",
+    "react": "^19.2.4",
+    "react-router-dom": "^7.13.1"
+  }
+}
