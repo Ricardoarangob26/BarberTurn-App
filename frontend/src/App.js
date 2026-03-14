@@ -6,7 +6,7 @@ import Premium from './components/pages/Premium.tsx';
 import Login from './components/pages/Login.tsx';
 import Galeria from './components/pages/Galeria.tsx';
 import RecuperarContraseña from './components/pages/RecuperarContraseña.jsx'
-import Membresias from './components/pages/Membresias.tsx';
+import Membresias from './components/pages/Membresias.jsx';
 import Index from './components/pages/index.tsx';
 import Registro from './components/pages/Registro.tsx';
 import BarberiasDisponibles from './components/pages/BarberiasDisponibles.tsx';
