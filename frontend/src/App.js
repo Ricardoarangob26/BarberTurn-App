@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
-import Premium from './components/pages/Premium';
+import Premium from './components/pages/Premium.tsx';
 import Login from './components/pages/Login.tsx';
-import Galeria from './components/pages/Galeria';
+import Galeria from './components/pages/Galeria.tsx';
 import RecuperarContraseña from './components/pages/RecuperarContraseña.jsx'
-import Membresias from './components/pages/Membresias';
+import Membresias from './components/pages/Membresias.tsx';
 import Index from './components/pages/index.tsx';
 import Registro from './components/pages/Registro.tsx';
 import BarberiasDisponibles from './components/pages/BarberiasDisponibles.tsx';
