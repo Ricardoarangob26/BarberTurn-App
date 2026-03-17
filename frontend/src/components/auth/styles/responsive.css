@@ -1,0 +1,46 @@
+/* =============================================
+   Responsive Breakpoints for Auth Components
+   Mobile  : < 640px
+   Tablet  : 640px – 1024px
+   Desktop : > 1024px
+   ============================================= */
+
+/* ---- Mobile (default, < 640px) ---- */
+.layout {
+  padding: 0.75rem;
+}
+
+.card {
+  padding: 2rem 1.25rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+}
+
+/* ---- Tablet (>= 640px) ---- */
+@media (min-width: 640px) {
+  .layout {
+    padding: 1.5rem;
+  }
+
+  .card {
+    padding: 2.5rem 2rem;
+    max-width: 440px;
+  }
+
+  .cardTitle {
+    font-size: 1.75rem;
+  }
+}
+
+/* ---- Desktop (>= 1024px) ---- */
+@media (min-width: 1024px) {
+  .layout {
+    padding: 2rem;
+  }
+
+  .card {
+    max-width: 460px;
+  }
+}
