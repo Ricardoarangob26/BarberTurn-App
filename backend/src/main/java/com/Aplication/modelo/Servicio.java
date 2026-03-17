@@ -31,6 +31,8 @@ public class Servicio {
     private String decripcionservicio;
 
     private long precioservicio;
+    
+    private Integer duracion;
 
 
 }

@@ -28,6 +28,17 @@ public class Local {
 
     private Long telefono;
     
+    private String slogan;
+    private String descripcion;
+    private String ciudad;
+    private String email;
+    private String sitioWeb;
+    private String instagram;
+    private String facebook;
+    
+    @Lob
+    private byte[] fotoPrincipal;
+    
     @Lob
     private byte[] imagen;
 

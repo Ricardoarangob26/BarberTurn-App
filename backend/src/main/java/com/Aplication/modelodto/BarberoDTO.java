@@ -124,11 +124,56 @@ public class BarberoDTO {
         this.email = email;
     }
 
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Double getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Double calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public Integer getCitasCompletadas() {
+        return citasCompletadas;
+    }
+
+    public void setCitasCompletadas(Integer citasCompletadas) {
+        this.citasCompletadas = citasCompletadas;
+    }
+
+    public java.time.LocalDate getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(java.time.LocalDate fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
     private Long id;
     private String nombre;
     private String apellido;
     private Long telefono;
     private String email;
+    private String especialidad;
+    private String estado;
+    private Double calificacion;
+    private Integer citasCompletadas;
+    private java.time.LocalDate fechaIngreso;
     private String Rol;
     private String local;
     private byte[] imagen;

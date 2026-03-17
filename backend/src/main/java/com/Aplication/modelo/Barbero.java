@@ -42,6 +42,12 @@ public class Barbero {
     @Column(unique=true)
     private String email;
     
+    private String especialidad;
+    private String estado;
+    private Double calificacion;
+    private Integer citasCompletadas;
+    private java.time.LocalDate fechaIngreso;
+    
     private String local;
     private String Rol;
     

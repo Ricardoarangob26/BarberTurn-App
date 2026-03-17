@@ -67,19 +67,19 @@ const Premium: React.FC = () => {
                     <div style={styles.cardContainer}>
                         {membershipPlans.map((plan) => (
                             <div key={plan.id} style={{
-                                ...styles.glassCard, 
+                                ...styles.glassCard,
                                 borderColor: `rgba(${hexToRgb(plan.color)}, 0.3)`,
                                 boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(${hexToRgb(plan.color)}, 0.1)`
                             }}>
-                                <div style={{...styles.cardHeader, borderBottom: `1px solid rgba(${hexToRgb(plan.color)}, 0.2)`}}>
-                                    <h3 style={{...styles.cardTitle, color: plan.color}}>{plan.name}</h3>
-                                    <div style={{...styles.priceContainer, color: plan.color}}>
+                                <div style={{ ...styles.cardHeader, borderBottom: `1px solid rgba(${hexToRgb(plan.color)}, 0.2)` }}>
+                                    <h3 style={{ ...styles.cardTitle, color: plan.color }}>{plan.name}</h3>
+                                    <div style={{ ...styles.priceContainer, color: plan.color }}>
                                         <span style={styles.currency}>$</span>
                                         <span style={styles.price}>{plan.price}</span>
                                         <span style={styles.period}>/mes</span>
                                     </div>
                                 </div>
-                                
+
                                 <ul style={styles.featureList}>
                                     {plan.features.map((feature, index) => (
                                         <li key={index} style={styles.featureItem}>
@@ -89,8 +89,8 @@ const Premium: React.FC = () => {
                                     ))}
                                 </ul>
 
-                                <button 
-                                    style={{...styles.subscribeBtn, backgroundColor: plan.color, color: plan.name === 'Silver' ? '#000' : '#111827'}}
+                                <button
+                                    style={{ ...styles.subscribeBtn, backgroundColor: plan.color, color: plan.name === 'Silver' ? '#000' : '#111827' }}
                                     onClick={() => alert(`Funcionalidad de compra para plan ${plan.name} en construcción.`)}
                                 >
                                     ADQUIRIR AHORA
@@ -125,9 +125,9 @@ const Premium: React.FC = () => {
 // Utility to easily inject specific colors to RGBA backgrounds/borders
 const hexToRgb = (hex: string) => {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? 
-      `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` 
-      : '245, 158, 11'; // Default Gold fallback
+    return result ?
+        `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
+        : '245, 158, 11'; // Default Gold fallback
 }
 
 const styles: { [key: string]: React.CSSProperties } = {
