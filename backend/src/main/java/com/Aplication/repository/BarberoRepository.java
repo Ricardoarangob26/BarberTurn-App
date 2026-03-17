@@ -23,13 +23,10 @@ public interface BarberoRepository extends JpaRepository<Barbero, Long> {
     // Método para buscar un barbero por su teléfono
     public Optional<Barbero> findByTelefono(Long telefono);
 
-    // Filtrar barberos por local
-    List<Barbero> findByLocal(String local);
+    // Método para buscar barberos por local
+    public java.util.List<Barbero> findByLocal(String local);
 
-    // Filtrar barberos por especialidad
-    List<Barbero> findByEspecialidad(String especialidad);
+    // Método para buscar barberos por estado
+    public java.util.List<Barbero> findByEstado(String estado);
 
-    // Filtrar barberos por estado
-    List<Barbero> findByEstado(String estado);
-    
 }

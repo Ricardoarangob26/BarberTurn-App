@@ -113,8 +113,16 @@ public class BarberoService {
     public Optional<Barbero> findById(Long id) {
         return barberoRepository.findById(id);
     }
-    
-    
+
+    // Método para encontrar barberos por local
+    public List<Barbero> findByLocal(String local) {
+        return barberoRepository.findByLocal(local);
+    }
+
+    // Método para encontrar barberos por estado
+    public List<Barbero> findByEstado(String estado) {
+        return barberoRepository.findByEstado(estado);
+    }
 
     // Método para actualizar un barbero
     public Barbero updateBarbero(Long id, Barbero updatedBarbero) {
@@ -136,6 +144,21 @@ public class BarberoService {
             }
             if (updatedBarbero.getRol() != null) {
                 barbero.setRol(updatedBarbero.getRol());
+            }
+            if (updatedBarbero.getEspecialidad() != null) {
+                barbero.setEspecialidad(updatedBarbero.getEspecialidad());
+            }
+            if (updatedBarbero.getEstado() != null) {
+                barbero.setEstado(updatedBarbero.getEstado());
+            }
+            if (updatedBarbero.getCalificacion() != null) {
+                barbero.setCalificacion(updatedBarbero.getCalificacion());
+            }
+            if (updatedBarbero.getCitasCompletadas() != null) {
+                barbero.setCitasCompletadas(updatedBarbero.getCitasCompletadas());
+            }
+            if (updatedBarbero.getFechaIngreso() != null) {
+                barbero.setFechaIngreso(updatedBarbero.getFechaIngreso());
             }
 
             // Solo actualiza la imagen si se ha enviado una nueva

@@ -33,7 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 
 @RestController
-@RequestMapping("/api/barberos")
+@RequestMapping("/api/barbero")
 @CrossOrigin(origins = {"http://localhost:3000", "https://barberturn.netlify.app"})
 public class BarberoController {
     
@@ -62,9 +62,9 @@ public class BarberoController {
         return new ResponseEntity<>(barberos, HttpStatus.OK);
     }
 
-    @GetMapping("/{nombre}")
-    public ResponseEntity<Barbero> getBarberoByNombre(@PathVariable String nombre) {
-        return barberoService.findByNombre(nombre)
+    @GetMapping("/{id}")
+    public ResponseEntity<Barbero> getBarberoById(@PathVariable Long id) {
+        return barberoService.findById(id)
                 .map(barbero -> new ResponseEntity<>(barbero, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
