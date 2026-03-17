@@ -6,6 +6,7 @@ package com.Aplication.repository;
 
 import com.Aplication.modelo.Turno;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,10 @@ public interface TurnoRepository extends JpaRepository<Turno, Long> {
      
      // Buscar turnos para una fecha específica y dentro de un rango de hora
     List<Turno> findByFechaAndHoraBetween(LocalDate fecha, String horaInicio, String horaFin);
+
+    // Buscar turnos por lista de emails de barbero en un rango de fechas
+    List<Turno> findByEmailBarberoInAndFechaBetween(Collection<String> emailsBarbero, LocalDate fechaInicio, LocalDate fechaFin);
+
+    // Buscar turnos cancelados por lista de emails de barbero en un rango de fechas
+    List<Turno> findByEmailBarberoInAndFechaBetweenAndEstado(Collection<String> emailsBarbero, LocalDate fechaInicio, LocalDate fechaFin, String estado);
 }
