@@ -787,7 +787,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: '0.5rem',
     fontSize: '1.1rem',
     fontWeight: 'bold',
-    marginBottom: '1rem',
     margin: 0,
     marginBottom: '1.25rem',
   },

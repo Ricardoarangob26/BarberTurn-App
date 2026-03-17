@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Calendar, Scissors, X, CheckCircle, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { LogOut, Calendar, Scissors, CheckCircle, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import axiosInstance from '../../axiosConfig';
 
 interface User {

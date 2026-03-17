@@ -26,6 +26,7 @@ import ParaBarberias from './components/pages/ParaBarberias.tsx';
 import GestionBarberos from './components/pages/GestionBarberos.tsx';
 import ConfigurarBarberia from './components/pages/ConfigurarBarberia.tsx';
 import EstadisticasBarberia from './components/pages/EstadisticasBarberia.tsx';
+import LoginBarberia from './components/auth/LoginBarberia.tsx';
 
 import './App.css';
 
@@ -40,6 +41,7 @@ function App() {
             <Route path="/gestion-barberos" element={<GestionBarberos />} />
             <Route path="/configurar-barberia" element={<ConfigurarBarberia />} />
             <Route path="/estadisticas-barberia" element={<EstadisticasBarberia />} />
+            <Route path="/login-barberia" element={<LoginBarberia />} />
             <Route path="/Premium" element={<Premium />} />
             <Route path="/iniciar-sesion" element={<Login />} />
             <Route path="/galeria" element={<Galeria />} />

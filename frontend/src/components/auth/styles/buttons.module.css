@@ -1,0 +1,112 @@
+/* =============================================
+   Form Button Styles
+   ============================================= */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+  min-height: 44px; /* touch-friendly */
+  letter-spacing: 0.01em;
+}
+
+/* ---- Primary variant ---- */
+.primary {
+  background-color: #f59e0b;
+  color: #111;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #fbbf24;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+}
+
+/* ---- Secondary variant ---- */
+.secondary {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+.secondary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ---- Outline variant ---- */
+.outline {
+  background-color: transparent;
+  color: #f59e0b;
+  border: 1.5px solid #f59e0b;
+}
+
+.outline:hover:not(:disabled) {
+  background-color: rgba(245, 158, 11, 0.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.2);
+}
+
+.outline:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ---- Disabled state ---- */
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ---- Focus ring ---- */
+.button:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+/* ---- Loading spinner inside button ---- */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(17, 17, 17, 0.3);
+  border-top-color: #111;
+  border-radius: 50%;
+  animation: spinBtn 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.secondary .spinner,
+.outline .spinner {
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+}
+
+@keyframes spinBtn {
+  to { transform: rotate(360deg); }
+}

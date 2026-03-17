@@ -1,27 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { api } from '../../axiosConfig';
-import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { jwtDecode } from 'jwt-decode';
-
-interface User {
-  password: string;
-  username: string;
-  id: string;
-  usuario: string;
-  contrasena: string;
-}
-
-interface UserData {
-  id: string;
-  nombre: string;
-  apellido: string;
-  email: string;
-  telefono: string;
-  local?: string;
-}
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -49,8 +31,8 @@ export default function Login() {
       // Pasar token al contexto
       login(token);
 
-      // Decodificar token para ver el rol (asumimos que el backend pone el rol en claims, o simplemente navegamos basado en el ID o en el username)
-      const decodedUser: any = jwtDecode(token);
+      // Decodificar token para ver el rol si es necesario en el futuro
+      // const decodedUser: any = jwtDecode(token);
       
       // En CustomUserDetailsService establecimos authorities (e.g. ROLE_CLIENTE, ROLE_BARBERO) pero el JWT nativo de JJWT no incluye scopes si no se los pasamos al HashMap.
       // Así que, por el momento, si sabemos que un barbero tiene un endpoint particular para obtener sus datos o el cliente, intentaremos hacer redirect.
