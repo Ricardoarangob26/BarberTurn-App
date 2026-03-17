@@ -19,6 +19,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Service
 public class TurnoService {
 
+    private static final String ESTADO_DISPONIBLE = "disponible";
+
     @Autowired
     private TurnoRepository turnoRepository;
     
@@ -103,6 +105,34 @@ public class TurnoService {
             turno.setHora(updateTurno.getHora());
             return turnoRepository.save(turno);  // Guardar turno actualizado
         }).orElseThrow(() -> new RuntimeException("Turno no encontrado"));
+    }
+
+    // Obtener turnos por nombre de barbero
+    public List<Turno> getTurnosByBarbero(String barbero) {
+        return turnoRepository.findByBarbero(barbero);
+    }
+
+    // Obtener turnos por nombre de local
+    public List<Turno> getTurnosByLocal(String local) {
+        return turnoRepository.findByLocal(local);
+    }
+
+    // Obtener turnos por nombre de cliente
+    public List<Turno> getTurnosByCliente(String cliente) {
+        return turnoRepository.findByCliente(cliente);
+    }
+
+    // Obtener turnos por fecha
+    public List<Turno> getTurnosByFecha(LocalDate fecha) {
+        return turnoRepository.findByFecha(fecha);
+    }
+
+    // Obtener turnos disponibles por fecha y opcionalmente barbero
+    public List<Turno> getTurnosDisponibles(LocalDate fecha, String barbero) {
+        if (barbero != null && !barbero.isBlank()) {
+            return turnoRepository.findByFechaAndBarberoAndEstado(fecha, barbero, ESTADO_DISPONIBLE);
+        }
+        return turnoRepository.findByFechaAndEstado(fecha, ESTADO_DISPONIBLE);
     }
     
     // Tarea programada para enviar el recordatorio 20 minutos antes del turno

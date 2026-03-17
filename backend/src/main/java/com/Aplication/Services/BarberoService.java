@@ -22,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class BarberoService {
+
+    private static final String ESTADO_ACTIVO = "activo";
     
     @Autowired
     private BarberoRepository barberoRepository;
@@ -167,6 +169,21 @@ public class BarberoService {
         Barbero barbero = barberoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Barbero no encontrado"));
         return barbero.getImagen(); // Devuelve la imagen almacenada como byte[]
+    }
+
+    // Obtener barberos por local
+    public List<Barbero> getBarberosByLocal(String local) {
+        return barberoRepository.findByLocal(local);
+    }
+
+    // Obtener barberos por especialidad
+    public List<Barbero> getBarberosByEspecialidad(String especialidad) {
+        return barberoRepository.findByEspecialidad(especialidad);
+    }
+
+    // Obtener barberos disponibles (estado "activo")
+    public List<Barbero> getBarberosDisponibles() {
+        return barberoRepository.findByEstado(ESTADO_ACTIVO);
     }
 
 }
