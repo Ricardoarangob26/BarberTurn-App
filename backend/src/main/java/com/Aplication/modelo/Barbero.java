@@ -4,6 +4,7 @@
  */
 package com.Aplication.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -18,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  *
@@ -50,7 +52,14 @@ public class Barbero {
     
     private String local;
     private String Rol;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "barberia_id")
+    @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Barberia barberia;
+
     @Lob
     private byte[] imagen;
 }
