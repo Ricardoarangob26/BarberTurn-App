@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,7 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 
 @RestController
-@RequestMapping("/api/barberos")
+@RequestMapping("/api/barbero")
 @CrossOrigin(origins = {"http://localhost:3000", "https://barberturn.netlify.app"})
 public class BarberoController {
     
@@ -61,9 +62,9 @@ public class BarberoController {
         return new ResponseEntity<>(barberos, HttpStatus.OK);
     }
 
-    @GetMapping("/{nombre}")
-    public ResponseEntity<Barbero> getBarberoByNombre(@PathVariable String nombre) {
-        return barberoService.findByNombre(nombre)
+    @GetMapping("/{id}")
+    public ResponseEntity<Barbero> getBarberoById(@PathVariable Long id) {
+        return barberoService.findById(id)
                 .map(barbero -> new ResponseEntity<>(barbero, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -113,6 +114,30 @@ public class BarberoController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
         }
+    }
+
+    // Filtrar barberos por local
+    @GetMapping("/por-local/{local}")
+    public ResponseEntity<List<Barbero>> getBarberosByLocal(@PathVariable String local) {
+        List<Barbero> barberos = barberoService.getBarberosByLocal(local);
+        return new ResponseEntity<>(barberos, HttpStatus.OK);
+    }
+
+    // Filtrar barberos por especialidad
+    @GetMapping("/por-especialidad")
+    public ResponseEntity<?> getBarberosByEspecialidad(@RequestParam(name = "esp", required = false) String especialidad) {
+        if (especialidad == null || especialidad.isBlank()) {
+            return new ResponseEntity<>("El parámetro 'esp' es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        List<Barbero> barberos = barberoService.getBarberosByEspecialidad(especialidad);
+        return new ResponseEntity<>(barberos, HttpStatus.OK);
+    }
+
+    // Obtener barberos disponibles (estado "activo")
+    @GetMapping("/disponibles")
+    public ResponseEntity<List<Barbero>> getBarberosDisponibles() {
+        List<Barbero> barberos = barberoService.getBarberosDisponibles();
+        return new ResponseEntity<>(barberos, HttpStatus.OK);
     }
 
 }

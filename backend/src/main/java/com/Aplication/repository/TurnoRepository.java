@@ -19,9 +19,21 @@ public interface TurnoRepository extends JpaRepository<Turno, Long> {
      // Buscar turnos para una fecha específica y dentro de un rango de hora
     List<Turno> findByFechaAndHoraBetween(LocalDate fecha, String horaInicio, String horaFin);
 
-    // Buscar turnos por lista de emails de barbero en un rango de fechas
-    List<Turno> findByEmailBarberoInAndFechaBetween(Collection<String> emailsBarbero, LocalDate fechaInicio, LocalDate fechaFin);
+    // Filtrar turnos por nombre de barbero
+    List<Turno> findByBarbero(String barbero);
 
-    // Buscar turnos cancelados por lista de emails de barbero en un rango de fechas
-    List<Turno> findByEmailBarberoInAndFechaBetweenAndEstado(Collection<String> emailsBarbero, LocalDate fechaInicio, LocalDate fechaFin, String estado);
+    // Filtrar turnos por nombre de local
+    List<Turno> findByLocal(String local);
+
+    // Filtrar turnos por nombre de cliente
+    List<Turno> findByCliente(String cliente);
+
+    // Filtrar turnos por fecha
+    List<Turno> findByFecha(LocalDate fecha);
+
+    // Filtrar turnos disponibles por fecha y barbero
+    List<Turno> findByFechaAndBarberoAndEstado(LocalDate fecha, String barbero, String estado);
+
+    // Filtrar turnos disponibles solo por fecha
+    List<Turno> findByFechaAndEstado(LocalDate fecha, String estado);
 }

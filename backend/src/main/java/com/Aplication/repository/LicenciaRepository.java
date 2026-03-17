@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface LicenciaRepository extends JpaRepository<Licencia, Long> {
     Optional<Licencia> findByNombre(String nombre);
     List<Licencia> findByActivaTrue();
+    List<Licencia> findByNivel(String nivel);
 }

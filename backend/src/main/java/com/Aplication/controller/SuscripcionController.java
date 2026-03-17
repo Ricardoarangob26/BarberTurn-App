@@ -2,6 +2,7 @@ package com.Aplication.controller;
 
 import com.Aplication.modelo.Licencia;
 import com.Aplication.modelo.SuscripcionCliente;
+import com.Aplication.modelodto.SuscripcionDTO;
 import com.Aplication.service.SuscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/suscripciones")
@@ -49,5 +51,38 @@ public class SuscripcionController {
         } catch(Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    // --- Endpoints de administración ---
+
+    @GetMapping("/admin/todas")
+    public ResponseEntity<List<SuscripcionDTO>> getAllSuscripciones() {
+        return ResponseEntity.ok(suscripcionService.getAllSuscripciones());
+    }
+
+    @PutMapping("/{id}/cancelar")
+    public ResponseEntity<?> cancelarSuscripcion(@PathVariable Long id) {
+        try {
+            SuscripcionDTO cancelada = suscripcionService.cancelarSuscripcion(id);
+            return ResponseEntity.ok(cancelada);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/usuario/{userId}")
+    public ResponseEntity<?> getSuscripcionPorUsuario(@PathVariable Long userId) {
+        try {
+            List<SuscripcionDTO> suscripciones = suscripcionService.getSuscripcionesPorUsuario(userId);
+            return ResponseEntity.ok(suscripciones);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/activas/count")
+    public ResponseEntity<Map<String, Long>> contarSuscripcionesActivas() {
+        long count = suscripcionService.getSuscripcionesActivasCount();
+        return ResponseEntity.ok(Map.of("total", count));
     }
 }

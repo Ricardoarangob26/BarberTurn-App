@@ -5,6 +5,7 @@
 package com.Aplication.repository;
 
 import com.Aplication.modelo.Barbero;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -21,5 +22,11 @@ public interface BarberoRepository extends JpaRepository<Barbero, Long> {
     
     // Método para buscar un barbero por su teléfono
     public Optional<Barbero> findByTelefono(Long telefono);
-    
+
+    // Método para buscar barberos por local
+    public java.util.List<Barbero> findByLocal(String local);
+
+    // Método para buscar barberos por estado
+    public java.util.List<Barbero> findByEstado(String estado);
+
 }
