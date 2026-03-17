@@ -3,6 +3,8 @@ package com.Aplication.modelo;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Data
 @Builder
@@ -25,4 +27,19 @@ public class Licencia {
     
     @Column(columnDefinition = "boolean default true")
     private Boolean activa;
+
+    // Duración en días (30 para mensual, 365 para anual)
+    private Integer duracionDias;
+
+    // Color asociado al plan: gris, oro, rojo
+    private String color;
+
+    // Nivel del plan: Silver, Gold, Black VIP
+    private String nivel;
+
+    // Beneficios del plan almacenados como lista
+    @ElementCollection
+    @CollectionTable(name = "Licencia_Beneficios", joinColumns = @JoinColumn(name = "licencia_id"))
+    @Column(name = "beneficio")
+    private List<String> beneficios;
 }

@@ -19,4 +19,13 @@ public interface SuscripcionClienteRepository extends JpaRepository<SuscripcionC
     
     // Obtener suscripciones por estado (ej: para el cron de expiracion)
     List<SuscripcionCliente> findByEstado(String estado);
+
+    // Obtener suscripciones por cliente ID
+    List<SuscripcionCliente> findByClienteId(Long clienteId);
+
+    // Obtener suscripciones por cliente ID y estado
+    List<SuscripcionCliente> findByClienteIdAndEstado(Long clienteId, String estado);
+
+    // Contar suscripciones por estado
+    long countByEstado(String estado);
 }
